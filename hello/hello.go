@@ -6,21 +6,25 @@ func main() {
 	fmt.Println(Hello("Nadia", ""))
 }
 
-const spanish = "Spanish"
-const french = "French"
-const mandarin = "Mandarin"
-const englishHelloPrefix = "Hello, "
-const spanishHelloPrefix = "Hola, "
-const frenchHelloPrefix = "Bonjour, "
-const mandarinHelloPrefix = "Ni hao, "
+const (
+	spanish             = "Spanish"
+	french              = "French"
+	mandarin            = "Mandarin"
+	englishHelloPrefix  = "Hello, "
+	spanishHelloPrefix  = "Hola, "
+	frenchHelloPrefix   = "Bonjour, "
+	mandarinHelloPrefix = "Ni hao, "
+)
 
 func Hello(name string, language string) string {
 	if name == "" {
 		name = "World"
 	}
 
-	prefix := englishHelloPrefix
+	return greetingPrefix(language) + name
+}
 
+func greetingPrefix(language string) (prefix string) {
 	switch language {
 	case spanish:
 		prefix = spanishHelloPrefix
@@ -28,7 +32,8 @@ func Hello(name string, language string) string {
 		prefix = frenchHelloPrefix
 	case mandarin:
 		prefix = mandarinHelloPrefix
+	default:
+		prefix = englishHelloPrefix
 	}
-
-	return prefix + name
+	return
 }
